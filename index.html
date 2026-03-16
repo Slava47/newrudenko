@@ -23,6 +23,8 @@
 
     .frame-outer {
       width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
       overflow: hidden;
       position: relative;
       background-color: #faf7f2;
@@ -259,7 +261,7 @@
     var outer, frame, resizeTimer;
 
     function scaleFrame() {
-      var scale = window.innerWidth / 1440;
+      var scale = outer.offsetWidth / 1440;
       frame.style.transform = 'scale(' + scale + ')';
       outer.style.height = (frame.offsetHeight * scale) + 'px';
     }
