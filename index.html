@@ -94,7 +94,7 @@
       background: linear-gradient(180deg, rgba(217,217,217,0) 0%, rgba(250,247,242,1) 100%);
     }
 
-    /* Мобильная адаптация - увеличенный масштаб */
+    /* Мобильная адаптация */
     @media (max-width: 768px) {
       * {
         margin: 0;
@@ -113,53 +113,24 @@
       .frame-outer {
         width: 100%;
         max-width: 100%;
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+        /* Height equals the visual height of the scaled frame (2861px * scale) */
+        height: calc(100vw * 2861 / 1440);
+        overflow: hidden;
         justify-content: flex-start;
+        align-items: flex-start;
         padding: 0;
         margin: 0;
       }
 
       .frame {
-        /* Увеличенный масштаб для телефонов */
-        transform: scale(calc(100vw / 1300));
+        /* Scale the 1440px frame to exactly fill the viewport width */
+        transform: scale(calc(100vw / 1440));
         transform-origin: top left;
         width: 1440px;
         margin: 0;
         padding: 0;
         position: relative;
         left: 0;
-        right: 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .frame-outer {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        min-height: 100vh;
-        justify-content: flex-start;
-        padding: 0;
-        margin: 0;
-      }
-
-      .frame {
-        /* Ещё больше масштаб на маленьких экранах */
-        transform: scale(calc(100vw / 1200));
-        transform-origin: top left;
-        left: 0;
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    /* Для очень маленьких экранов */
-    @media (max-width: 360px) {
-      .frame {
-        transform: scale(calc(100vw / 1100));
       }
     }
   </style>
