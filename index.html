@@ -13,33 +13,43 @@
       src: url('fonts/oldtimer-goppg.ttf') format('truetype');
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background-color: #faf7f2;
       font-family: 'Lexend Deca', sans-serif;
       overflow-x: hidden;
+      overflow-y: auto;
+      width: 100%;
+      max-width: 100%;
     }
 
     .frame-outer {
       width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      overflow: hidden;
       position: relative;
       background-color: #faf7f2;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      /* Desktop: 2861px * 0.5 = 1431px */
+      height: 1431px;
+      overflow: hidden;
     }
 
     .frame {
       position: relative;
       width: 1440px;
-      min-height: 2861px;
+      height: 2861px;
       background-color: #faf7f2;
       overflow: hidden;
-      transform-origin: top left;
+      transform: scale(0.5);
+      transform-origin: top center;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Абсолютное позиционирование для всех элементов */
     .absolute {
       position: absolute;
     }
@@ -76,7 +86,6 @@
       font-family: 'Lexend Deca', Helvetica, sans-serif;
     }
 
-    /* Градиенты и эффекты */
     .gradient-overlay {
       background: linear-gradient(180deg, rgba(126,119,113,0) 0%, rgba(228,216,204,0.69) 100%);
     }
@@ -84,199 +93,245 @@
     .gradient-bottom {
       background: linear-gradient(180deg, rgba(217,217,217,0) 0%, rgba(250,247,242,1) 100%);
     }
+
+    /* Мобильная адаптация - увеличенный масштаб */
+    @media (max-width: 768px) {
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .frame-outer {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+      }
+
+      .frame {
+        /* Увеличенный масштаб для телефонов */
+        transform: scale(calc(100vw / 1300));
+        transform-origin: top left;
+        width: 1440px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        left: 0;
+        right: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .frame-outer {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 100vh;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+      }
+
+      .frame {
+        /* Ещё больше масштаб на маленьких экранах */
+        transform: scale(calc(100vw / 1200));
+        transform-origin: top left;
+        left: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    /* Для очень маленьких экранов */
+    @media (max-width: 360px) {
+      .frame {
+        transform: scale(calc(100vw / 1100));
+      }
+    }
   </style>
 </head>
 <body>
   <div class="frame-outer">
-  <div class="frame">
-    <!-- Фоновые элементы -->
-   
-    <div class="absolute gradient-bottom" style="top: -315px; left: -5px; width: 1468px; height: 746px;"></div>
+    <div class="frame">
+      <!-- Фоновые элементы -->
+      <div class="absolute gradient-bottom" style="top: -315px; left: -5px; width: 1468px; height: 746px;"></div>
 
-    <!-- Social Links блоки (фон) -->
-    <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 61px; width: 218px; height: 64px;"></div>
-    <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 490px; width: 218px; height: 64px;"></div>
-    <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 960px; width: 144px; height: 64px;"></div>
+      <!-- Social Links блоки (фон) -->
+      <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 61px; width: 218px; height: 64px;"></div>
+      <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 490px; width: 218px; height: 64px;"></div>
+      <div class="absolute bg-[#d9d9d91a] rounded-lg backdrop-blur-[10.85px]" style="top: 254px; left: 960px; width: 144px; height: 64px;"></div>
 
-    <!-- Social Links текст -->
-    <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 101px;">GitHub</div>
-    <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 509px;">Telegram</div>
-    <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 1003px;">VK</div>
+      <!-- Social Links текст -->
+      <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 101px;">GitHub</div>
+      <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 509px;">Telegram</div>
+      <div class="absolute lexend text-[#d57653] text-[40px]" style="top: 261px; left: 1003px;">VK</div>
 
-    <!-- Заголовок ФИО -->
-    <div class="absolute oldtimer text-black text-[100px]" style="top: 405px; left: 55px; width: 1386px; line-height: 128px;">
-      РУДЕНКО ВЯЧЕСЛАВ АЛЕКСАНДРОВИЧ
-    </div>
-
-    <!-- ПОРТФОЛИО -->
-    <div class="absolute oldtimer text-black text-[146px] whitespace-nowrap" style="top: 55px; left: 55px; line-height: 186.9px;">
-      ПОРТФОЛИО
-    </div>
-
-    <!-- Описание -->
-    <p class="absolute lexend text-black text-[40px]" style="top: 707px; left: 64px; width: 1397px;">
-      Студент Воронежского государственного лесотехнического университета (ВГЛТУ). Специализируюсь на разработке программного обеспечения: telegram-боты, веб-приложения, инфраструктурные решения.
-    </p>
-
-    <!-- Почему Я -->
-    <p class="absolute oldtimer text-[100px] whitespace-nowrap" style="top: 981px; left: 52px;">
-      <span class="text-black">ПОЧЕМУ </span>
-      <span class="text-[#d57653]">Я</span>
-    </p>
-
-    <p class="absolute lexend text-black text-[40px]" style="top: 1140px; left: 61px; width: 1396px;">
-      Имею опыт выступления на международных конференциях <br>и реализации проектов для реального бизнеса и волонтерских организаций.
-    </p>
-
-    <!-- Кнопка -->
-    <div class="absolute bg-[#d57653] rounded-[18px] shadow-[2px_2px_8.1px_#6d493c] flex items-center justify-center" style="top: 1337px; left: 61px; width: 335px; height: 124px;">
-      <div class="lexend text-[#faf7f2] text-[40px] text-center">
-        связаться <br>в Telegram
+      <!-- Заголовок ФИО -->
+      <div class="absolute oldtimer text-black text-[100px]" style="top: 405px; left: 55px; width: 1386px; line-height: 128px;">
+        РУДЕНКО ВЯЧЕСЛАВ АЛЕКСАНДРОВИЧ
       </div>
-    </div>
 
-    <!-- Инфо справа -->
-    <div class="absolute lexend text-black text-xl text-right" style="top: 74px; left: 1285px;">
-      Воронеж<br>ВГЛТУ<br>2026
-    </div>
+      <!-- ПОРТФОЛИО -->
+      <div class="absolute oldtimer text-black text-[146px] whitespace-nowrap" style="top: 55px; left: 55px; line-height: 186.9px;">
+        ПОРТФОЛИО
+      </div>
 
-    <!-- МОИ ПРОЕКТЫ -->
-    <div class="absolute oldtimer text-black text-[100px] whitespace-nowrap" style="top: 1535px; left: 47px;">
-      МОИ ПРОЕКТЫ
-    </div>
-
-    <!-- Оранжевый фон -->
-    <div class="absolute bg-[#d57653]" style="top: 1713px; left: -5px; width: 1449px; height: 609px;"></div>
-
-    <!-- Project: ЧайКоктель -->
-    <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 1827px; left: 56px; width: 305px; height: 432px;">
-      <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 67px;">ЧайКоктель</div>
-      <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 17px; width: 271px; height: 35px;"></div>
-      <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 125px;">Python</div>
-      <p class="absolute lexend text-[#a1988f] text-base" style="top: 113px; left: 17px; width: 271px;">
-        Telegram-бот для чайно-коктельного бара с подбором коктелей и веб-панелью для аналитики
+      <!-- Описание -->
+      <p class="absolute lexend text-black text-[40px]" style="top: 707px; left: 64px; width: 1397px;">
+        Студент Воронежского государственного лесотехнического университета (ВГЛТУ). Специализируюсь на разработке программного обеспечения: telegram-боты, веб-приложения, инфраструктурные решения.
       </p>
-      <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
-    </div>
 
-    <!-- Project: ДоброБот -->
-    <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 1827px; left: 731px; width: 305px; height: 432px;">
-      <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 84px;">ДоброБот</div>
-      <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 27px; width: 113px; height: 35px;"></div>
-      <div class="absolute bg-[#e4d8cc] rounded" style="top: 57px; left: 165px; width: 113px; height: 35px;"></div>
-      <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 56px;">Python</div>
-      <div class="absolute lexend text-[#4a3e32] text-xs" style="top: 67px; left: 172px;">@tgvolonteerbot</div>
-      <p class="absolute lexend text-[#a1988f] text-base" style="top: 114px; left: 17px; width: 271px;">
-        Telegram-бот для координации и управления деятельностью волонтерской организации
+      <!-- Почему Я -->
+      <p class="absolute oldtimer text-[100px] whitespace-nowrap" style="top: 981px; left: 52px;">
+        <span class="text-black">ПОЧЕМУ </span>
+        <span class="text-[#d57653]">Я</span>
       </p>
-      <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
-    </div>
 
-    <!-- Project: GreenLink -->
-    <div class="absolute" style="top: 1827px; left: 393px; width: 307px; height: 432px;">
-      <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 0; left: 0; width: 305px; height: 432px;">
-        <div class="absolute bg-[#f5f0ea] rounded" style="top: 84px; left: 27px; width: 113px; height: 35px;"></div>
-        <div class="absolute bg-[#e4d8cc] rounded" style="top: 84px; left: 165px; width: 113px; height: 35px;"></div>
-        <div class="absolute lexend text-[#4a3e32] text-base" style="top: 92px; left: 201px;">Демо</div>
-        <div class="absolute lexend text-[#a1988f] text-base" style="top: 92px; left: 32px;">Python/Flask</div>
-        <p class="absolute lexend text-[#a1988f] text-base" style="top: 136px; left: 17px; width: 271px;">
-          Веб-платформа для волонтеров: управление мероприятиями, отчетами, баллами и ролями (Flask, SQLite, Docker).
+      <p class="absolute lexend text-black text-[40px]" style="top: 1140px; left: 61px; width: 1396px;">
+        Имею опыт выступления на международных конференциях <br>и реализации проектов для реального бизнеса и волонтерских организаций.
+      </p>
+
+      <!-- Кнопка -->
+      <div class="absolute bg-[#d57653] rounded-[18px] shadow-[2px_2px_8.1px_#6d493c] flex items-center justify-center" style="top: 1337px; left: 61px; width: 335px; height: 124px;">
+        <div class="lexend text-[#faf7f2] text-[40px] text-center">
+          связаться <br>в Telegram
+        </div>
+      </div>
+
+      <!-- Инфо справа -->
+      <div class="absolute lexend text-black text-xl text-right" style="top: 74px; left: 1285px;">
+        Воронеж<br>ВГЛТУ<br>2026
+      </div>
+
+      <!-- МОИ ПРОЕКТЫ -->
+      <div class="absolute oldtimer text-black text-[100px] whitespace-nowrap" style="top: 1535px; left: 47px;">
+        МОИ ПРОЕКТЫ
+      </div>
+
+      <!-- Оранжевый фон -->
+      <div class="absolute bg-[#d57653]" style="top: 1713px; left: -5px; width: 1449px; height: 609px;"></div>
+
+      <!-- Project: ЧайКоктель -->
+      <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 1827px; left: 56px; width: 305px; height: 432px;">
+        <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 67px;">ЧайКоктель</div>
+        <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 17px; width: 271px; height: 35px;"></div>
+        <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 125px;">Python</div>
+        <p class="absolute lexend text-[#a1988f] text-base" style="top: 113px; left: 17px; width: 271px;">
+          Telegram-бот для чайно-коктельного бара с подбором коктелей и веб-панелью для аналитики
         </p>
         <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
       </div>
-      <div class="absolute lexend font-bold text-black text-[23px] text-center" style="top: 12px; left: 14px; width: 277px;">
-        Социальная сеть GreenLink
-      </div>
-    </div>
 
-    <!-- Project: Учебный проект -->
-    <div class="absolute" style="top: 1827px; left: 1069px; width: 309px; height: 432px;">
-      <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 0; left: 0; width: 305px; height: 432px;">
-        <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 17px; width: 271px; height: 35px;"></div>
-        <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 61px;">Kubernetes/ClickHouse</div>
+      <!-- Project: ДоброБот -->
+      <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 1827px; left: 731px; width: 305px; height: 432px;">
+        <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 84px;">ДоброБот</div>
+        <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 27px; width: 113px; height: 35px;"></div>
+        <div class="absolute bg-[#e4d8cc] rounded" style="top: 57px; left: 165px; width: 113px; height: 35px;"></div>
+        <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 56px;">Python</div>
+        <div class="absolute lexend text-[#4a3e32] text-xs" style="top: 67px; left: 172px;">@tgvolonteerbot</div>
+        <p class="absolute lexend text-[#a1988f] text-base" style="top: 114px; left: 17px; width: 271px;">
+          Telegram-бот для координации и управления деятельностью волонтерской организации
+        </p>
         <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
       </div>
-      <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 35px;">Учебный проект</div>
-      <p class="absolute lexend text-[#a1988f] text-base" style="top: 114px; left: 17px; width: 271px;">
-        Учебный проект, направленный на изучение новой технологии
-      </p>
-    </div>
 
-    <!-- ТЕХНОЛОГИИ -->
-    <div class="absolute oldtimer text-black text-[100px] whitespace-nowrap" style="top: 2396px; left: 31px;">
-      ТЕХНОЛОГИИ
-    </div>
+      <!-- Project: GreenLink -->
+      <div class="absolute" style="top: 1827px; left: 393px; width: 307px; height: 432px;">
+        <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 0; left: 0; width: 305px; height: 432px;">
+          <div class="absolute bg-[#f5f0ea] rounded" style="top: 84px; left: 27px; width: 113px; height: 35px;"></div>
+          <div class="absolute bg-[#e4d8cc] rounded" style="top: 84px; left: 165px; width: 113px; height: 35px;"></div>
+          <div class="absolute lexend text-[#4a3e32] text-base" style="top: 92px; left: 201px;">Демо</div>
+          <div class="absolute lexend text-[#a1988f] text-base" style="top: 92px; left: 32px;">Python/Flask</div>
+          <p class="absolute lexend text-[#a1988f] text-base" style="top: 136px; left: 17px; width: 271px;">
+            Веб-платформа для волонтеров: управление мероприятиями, отчетами, баллами и ролями (Flask, SQLite, Docker).
+          </p>
+          <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
+        </div>
+        <div class="absolute lexend font-bold text-black text-[23px] text-center" style="top: 12px; left: 14px; width: 277px;">
+          Социальная сеть GreenLink
+        </div>
+      </div>
 
-    <!-- Tech Row 1 -->
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 61px; width: 289px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]">Python</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 393px; width: 128px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -33px; margin-right: -33px;">С#</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 564px; width: 167px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -41px; margin-right: -41px;">Flask</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 774px; width: 295px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -41px; margin-right: -41px;">ClickHouse</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 1112px; width: 142px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -56px; margin-right: -56px;">Linux</div>
-    </div>
+      <!-- Project: Учебный проект -->
+      <div class="absolute" style="top: 1827px; left: 1069px; width: 309px; height: 432px;">
+        <div class="absolute bg-[#f7f4ef] rounded-[7px] overflow-hidden shadow-[5px_7px_6.6px_#895846]" style="top: 0; left: 0; width: 305px; height: 432px;">
+          <div class="absolute bg-[#f5f0ea] rounded" style="top: 57px; left: 17px; width: 271px; height: 35px;"></div>
+          <div class="absolute lexend text-[#a1988f] text-base" style="top: 65px; left: 61px;">Kubernetes/ClickHouse</div>
+          <div class="absolute bg-[#dbd7d0] rounded-lg" style="top: 233px; left: 17px; width: 271px; height: 150px;"></div>
+        </div>
+        <div class="absolute lexend font-bold text-black text-[27px]" style="top: 16px; left: 35px;">Учебный проект</div>
+        <p class="absolute lexend text-[#a1988f] text-base" style="top: 114px; left: 17px; width: 271px;">
+          Учебный проект, направленный на изучение новой технологии
+        </p>
+      </div>
 
-    <!-- Tech Row 2 -->
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 61px; width: 197px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -46.5px; margin-right: -46.5px;">Docker</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 301px; width: 430px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -44.5px; margin-right: -44.5px;">Telegram Bot API</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 774px; width: 110px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -45px; margin-right: -45px;">Git</div>
-    </div>
-    <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 927px; width: 142px; height: 89px;">
-      <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -33.5px; margin-right: -33.5px;">k8s</div>
-    </div>
+      <!-- ТЕХНОЛОГИИ -->
+      <div class="absolute oldtimer text-black text-[100px] whitespace-nowrap" style="top: 2396px; left: 31px;">
+        ТЕХНОЛОГИИ
+      </div>
 
-    <!-- Линии -->
-    <svg class="absolute" style="top: 1642px; left: 787px; width: 646px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 646 11">
-      <line x1="0" y1="5.5" x2="646" y2="5.50006" stroke="black" stroke-width="11"/>
-    </svg>
+      <!-- Tech Row 1 -->
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 61px; width: 289px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]">Python</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 393px; width: 128px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -33px; margin-right: -33px;">С#</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 564px; width: 167px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -41px; margin-right: -41px;">Flask</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 774px; width: 295px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -41px; margin-right: -41px;">ClickHouse</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2574px; left: 1112px; width: 142px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -56px; margin-right: -56px;">Linux</div>
+      </div>
 
-    <svg class="absolute" style="top: 2503px; left: 698px; width: 739px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 739 11">
-      <line x1="0" y1="5.50012" x2="739" y2="5.50006" stroke="black" stroke-width="11"/>
-    </svg>
+      <!-- Tech Row 2 -->
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 61px; width: 197px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -46.5px; margin-right: -46.5px;">Docker</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 301px; width: 430px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -44.5px; margin-right: -44.5px;">Telegram Bot API</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 774px; width: 110px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -45px; margin-right: -45px;">Git</div>
+      </div>
+      <div class="absolute bg-[#f5f0ea] rounded flex items-center justify-center" style="top: 2686px; left: 927px; width: 142px; height: 89px;">
+        <div class="lexend text-[#a1988f] text-[45px]" style="margin-left: -33.5px; margin-right: -33.5px;">k8s</div>
+      </div>
 
-    <svg class="absolute" style="top: 201px; left: 938px; width: 502px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502 11">
-      <line x1="0" y1="5.50003" x2="502" y2="5.49999" stroke="black" stroke-width="11"/>
-    </svg>
+      <!-- Линии -->
+      <svg class="absolute" style="top: 1642px; left: 787px; width: 646px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 646 11">
+        <line x1="0" y1="5.5" x2="646" y2="5.50006" stroke="black" stroke-width="11"/>
+      </svg>
 
-    <svg class="absolute" style="top: 1089px; left: 554px; width: 886px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 11">
-      <line x1="0" y1="5.50009" x2="886" y2="5.50001" stroke="#D57653" stroke-width="11"/>
-    </svg>
+      <svg class="absolute" style="top: 2503px; left: 698px; width: 739px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 739 11">
+        <line x1="0" y1="5.50012" x2="739" y2="5.50006" stroke="black" stroke-width="11"/>
+      </svg>
+
+      <svg class="absolute" style="top: 201px; left: 938px; width: 502px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502 11">
+        <line x1="0" y1="5.50003" x2="502" y2="5.49999" stroke="black" stroke-width="11"/>
+      </svg>
+
+      <svg class="absolute" style="top: 1089px; left: 554px; width: 886px; height: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 11">
+        <line x1="0" y1="5.50009" x2="886" y2="5.50001" stroke="#D57653" stroke-width="11"/>
+      </svg>
+    </div>
   </div>
-  </div>
-
-  <script>
-    var outer, frame, resizeTimer;
-
-    function scaleFrame() {
-      var scale = outer.offsetWidth / 1440;
-      frame.style.transform = 'scale(' + scale + ')';
-      outer.style.height = (frame.offsetHeight * scale) + 'px';
-    }
-
-    function onResize() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(scaleFrame, 50);
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      outer = document.querySelector('.frame-outer');
-      frame = document.querySelector('.frame');
-      scaleFrame();
-      window.addEventListener('resize', onResize);
-    });
-  </script>
 </body>
 </html>
