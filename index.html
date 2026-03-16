@@ -17,9 +17,15 @@
       margin: 0;
       padding: 0;
       background-color: #faf7f2;
-      display: flex;
-      justify-content: center;
       font-family: 'Lexend Deca', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .frame-outer {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background-color: #faf7f2;
     }
 
     .frame {
@@ -28,6 +34,7 @@
       min-height: 2861px;
       background-color: #faf7f2;
       overflow: hidden;
+      transform-origin: top left;
     }
 
     /* Абсолютное позиционирование для всех элементов */
@@ -78,6 +85,7 @@
   </style>
 </head>
 <body>
+  <div class="frame-outer">
   <div class="frame">
     <!-- Фоновые элементы -->
    
@@ -245,5 +253,28 @@
       <line x1="0" y1="5.50009" x2="886" y2="5.50001" stroke="#D57653" stroke-width="11"/>
     </svg>
   </div>
+  </div>
+
+  <script>
+    var outer, frame, resizeTimer;
+
+    function scaleFrame() {
+      var scale = window.innerWidth / 1440;
+      frame.style.transform = 'scale(' + scale + ')';
+      outer.style.height = (frame.offsetHeight * scale) + 'px';
+    }
+
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(scaleFrame, 50);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      outer = document.querySelector('.frame-outer');
+      frame = document.querySelector('.frame');
+      scaleFrame();
+      window.addEventListener('resize', onResize);
+    });
+  </script>
 </body>
 </html>
